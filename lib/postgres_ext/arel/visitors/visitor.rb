@@ -34,6 +34,23 @@ module Arel
       def visit_IPAddr value, a = nil
         "'#{value.to_s}/#{value.instance_variable_get(:@mask_addr).to_s(2).count('1')}'"
       end
+
+      def visit_Arel_Nodes_Json o, a = nil
+        "#{visit o.left.name, o.left} = #{visit o.right, o.left}"
+      end
+
+      def visit_JsonString o, a = nil
+        table_name = a.relation.name
+
+        attributes = o.split('.')
+        column_name = quote_column_name attributes.shift
+
+        quoted = attributes.map { |part| quote part }
+        quoted.unshift column_name
+        result = [ quoted[0..-2].join(o.object_delimiter.to_s), quoted[-1] ].join(o.scalar_delimiter.to_s)
+
+        "#{quote_table_name table_name}.#{result}"
+      end
     end
   end
 end

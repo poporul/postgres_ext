@@ -2,6 +2,10 @@ require 'arel/predications'
 
 module Arel
   module Predications
+    def json(other)
+      Nodes::Json.new self, other
+    end
+
     def contained_within(other)
       Nodes::ContainedWithin.new self, other
     end

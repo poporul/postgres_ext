@@ -42,6 +42,14 @@ module ActiveRecord
         @scope
       end
 
+      def json(opts)
+        opts.each do |key, value|
+          @scope = @scope.where(arel_table[key].json(value))
+        end
+
+        @scope
+      end
+
       def any(opts)
         equality_to_function('ANY', opts)
       end
