@@ -42,9 +42,9 @@ module ActiveRecord
         @scope
       end
 
-      def json(opts)
+      def json_pull(opts)
         opts.each do |key, value|
-          @scope = @scope.where(arel_table[key].json(value))
+          @scope = @scope.where(arel_table[key].json_pull(value))
         end
 
         @scope

@@ -35,7 +35,7 @@ module Arel
         "'#{value.to_s}/#{value.instance_variable_get(:@mask_addr).to_s(2).count('1')}'"
       end
 
-      def visit_Arel_Nodes_Json o, a = nil
+      def visit_Arel_Nodes_JsonPull o, a = nil
         "#{visit o.left.name, o.left} = #{visit o.right, o.left}"
       end
 

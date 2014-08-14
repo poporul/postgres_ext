@@ -12,7 +12,7 @@ end
 
 module Arel
   module Nodes
-    class Json < Arel::Nodes::Equality
+    class JsonPull < Arel::Nodes::Equality
       def initialize(left, right)
         left.name = JsonString.new(left.name)
         right = right.to_s

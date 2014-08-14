@@ -2,8 +2,8 @@ require 'arel/predications'
 
 module Arel
   module Predications
-    def json(other)
-      Nodes::Json.new self, other
+    def json_pull(other)
+      Nodes::JsonPull.new self, other
     end
 
     def contained_within(other)
