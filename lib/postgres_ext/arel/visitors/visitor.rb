@@ -1,8 +1,8 @@
-require 'arel/visitors/visitor'
+require 'arel/visitors/postgresql'
 
 module Arel
   module Visitors
-    class Visitor
+    class PostgreSQL
       # We are adding our visitors to the main visitor for the time being until the right spot is found to monkey patch
       private
       def visit_Arel_Nodes_ContainedWithin o, a = nil
