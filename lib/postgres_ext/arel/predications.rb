@@ -6,6 +6,10 @@ module Arel
       Nodes::JsonPull.new self, other
     end
 
+    def json_pull_in(other)
+      Nodes::JsonPullIn.new self, other
+    end
+
     def contained_within(other)
       Nodes::ContainedWithin.new self, other
     end

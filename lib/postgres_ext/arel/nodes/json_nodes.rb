@@ -20,5 +20,12 @@ module Arel
         super(left, right)
       end
     end
+
+    class JsonPullIn < Arel::Nodes::In
+      def initialize(left, right)
+        left.name = JsonString.new(left.name)
+        super(left, right)
+      end
+    end
   end
 end

@@ -44,7 +44,8 @@ module ActiveRecord
 
       def json_pull(opts)
         opts.each do |key, value|
-          @scope = @scope.where(arel_table[key].json_pull(value))
+          method = value.is_a?(Array) ? :json_pull_in : :json_pull
+          @scope = @scope.where(arel_table[key].send(method, value))
         end
 
         @scope

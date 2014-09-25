@@ -39,6 +39,10 @@ module Arel
         "#{visit o.left.name, o.left} = #{visit o.right, o.left}"
       end
 
+      def visit_Arel_Nodes_JsonPullIn o, a = nil
+        "#{visit o.left.name, o.left} IN (#{visit o.right.map(&:to_s), a})"
+      end
+
       def visit_JsonString o, a = nil
         table_name = a.relation.name
 
